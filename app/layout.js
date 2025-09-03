@@ -1,8 +1,8 @@
-import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
 import Footer from "./components/footer";
 import ScrollToTop from "./components/helper/scroll-to-top";
 import ToastContainerWrapper from "./components/helper/toast-container";
+import GTMWrapper from "./components/helper/gtm-wrapper";
 import Navbar from "./components/navbar";
 import "./css/card.scss";
 import "./css/globals.scss";
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         </main>
         <Footer />
       </body>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
+      <GTMWrapper />
     </html>
   );
 }
