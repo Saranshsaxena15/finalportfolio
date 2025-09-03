@@ -9,8 +9,11 @@ const SCROLL_THRESHOLD = 50;
 
 const ScrollToTop = () => {
   const [btnCls, setBtnCls] = useState(DEFAULT_BTN_CLS);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    
     const handleScroll = () => {
       if (window.scrollY > SCROLL_THRESHOLD) {
         setBtnCls(DEFAULT_BTN_CLS.replace(" hidden", ""));
@@ -25,6 +28,11 @@ const ScrollToTop = () => {
   }, []);
 
   const onClickBtn = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  // Don't render anything until component is mounted on client
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <button className={btnCls} onClick={onClickBtn}>
